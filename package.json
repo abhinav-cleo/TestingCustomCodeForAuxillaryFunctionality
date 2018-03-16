@@ -1,0 +1,23 @@
+{
+  "name": "typescripttraining",
+  "version": "1.0.0",
+  "description": "typescript training",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/tsc InviteAlgorithm.ts --watch",
+    "run": "node InviteAlgorithm.js"
+  },
+  "author": "",
+  "license": "ISC",
+
+
+
+  "devDependencies": {
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {
+    "dynamodb-marshaler": "^2.0.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}
