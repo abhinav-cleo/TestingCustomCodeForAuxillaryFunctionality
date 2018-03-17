@@ -7,6 +7,11 @@ function displayRecords(arrayOfObjects) {
 };
 
 function cleanUpInviteListToRemoveTheInvitersEmail(inviteList, inviteeEmail) {
+
+    if (inviteList.length === 0) {
+        return null;
+    }
+
     for (let count = 0; count < inviteList.length; count++) {
         if (inviteList[count].email === inviteeEmail) {
             delete inviteList[count];
@@ -24,6 +29,11 @@ function cleanUpInviteListToRemoveTheInvitersEmail(inviteList, inviteeEmail) {
 };
 
 function cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(inviteList, currentTenantMemberEmail) {
+
+    if (inviteList.length === 0 || currentTenantMemberEmail.length === 0) {
+        return null;
+    }
+
     if (currentTenantMemberEmail.length >= inviteList.length) {
         for (let count = 0; count < currentTenantMemberEmail.length; count++) {
             for (let ncount = 0; ncount < inviteList.length; ncount++) {
@@ -54,6 +64,11 @@ function cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(inviteList
 };
 
 function cleanUpMemberRecordsWhichAreNotPartOfThisInviteFlow(memberRecords, inviteeEmailList) {
+
+    if (memberRecords.length === 0 || inviteeEmailList.length === 0) {
+        return null;
+    }
+
     for (let count = 0; count < memberRecords.length; count++) {
         memberRecords[count].matchcount = 0;
         for (let ncount = 0; ncount < inviteeEmailList.length; ncount++) {
@@ -81,10 +96,16 @@ function cleanUpMemberRecordsWhichAreNotPartOfThisInviteFlow(memberRecords, invi
 };
 
 function cleanUpMemberRecordsWhichArePartOfInvitersTenant(memberRecords, tenantId) {
+
+    if (memberRecords.length === 0) {
+        return null;
+    }
+
+    let inviterTenantMembers =[];
     for (let welcomeRecordCount = 0; welcomeRecordCount < memberRecords.length; welcomeRecordCount++) {
         let tenantIds = Object.keys(memberRecords[welcomeRecordCount].tenants);
         if (tenantIds.indexOf(tenantId) !== -1) {
-            currentTenantMembers.push(memberRecords[welcomeRecordCount].email);
+            inviterTenantMembers.push(memberRecords[welcomeRecordCount].email);
             memberRecords[welcomeRecordCount] = null;
         } else {
             continue;
@@ -95,13 +116,23 @@ function cleanUpMemberRecordsWhichArePartOfInvitersTenant(memberRecords, tenantI
         return el !== null;
     });
 
-    return memberRecords;
+    let result = {
+        updatedMemberRecords: memberRecords,
+        currentTenantMemberRecords: inviterTenantMembers
+    }
+
+    return result;
 };
 
 function isInArray(value, array) {
     let isPresent = false;
-    for (let itemcount = 0; itemcount < array.length; itemcount++) {
-        if (array[itemcount].email === value) {
+
+    if (array.length === 0 ) {
+        return isPresent;
+    }
+
+    for (let itemCount = 0; itemCount < array.length; itemCount++) {
+        if (array[itemCount].email === value) {
             isPresent = true;
             break;
         } else {
@@ -256,7 +287,7 @@ let welcomeOnlyUsers = [];
 
 let inviteOnlyUsers = [];
 
-let currentTenantMembers = [];
+
 
 // check 1 is to clean the invite list for the presence of the inviter's email
 
@@ -292,7 +323,11 @@ if (emailList.length > 0) {
 
         displayRecords(unMarshalMemberRecords);
 
-        unMarshalMemberRecords = cleanUpMemberRecordsWhichArePartOfInvitersTenant(unMarshalMemberRecords, tenantId);
+        let tempRecords: any = cleanUpMemberRecordsWhichArePartOfInvitersTenant(unMarshalMemberRecords, tenantId);
+
+        unMarshalMemberRecords = tempRecords.updatedMemberRecords;
+
+        let currentTenantMembers = tempRecords.currentTenantMemberRecords;
 
         console.log(`Member Records after cleanUp Member Records Which Are Part Of Inviters Tenant :`);
 
