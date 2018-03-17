@@ -185,191 +185,195 @@ let emailList = [
     }
 ]
 
-let unMarshalMemberRecords = [
-    {
-        "tenants": {
-            "cleo": {
-                "memberStatus": "ENABLED",
-                "isAdmin": true
-            }
-        },
-        "authPoolId": "us-west-2_OP0VuLD3B",
-        "authClientId": "7eq110jtide58ki5qnl2egatgj",
-        "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
-        "email": "preddy@cleo.com",
-        "isMigrated": true
-    },
-    {
-        "tenants": {
-            "cleo": {
-                "memberStatus": "ENABLED",
-                "isAdmin": true
-            }
-        },
-        "authPoolId": "us-west-2_OP0VuLD3B",
-        "authClientId": "7eq110jtide58ki5qnl2egatgj",
-        "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
-        "email": "agupta@cleo.com",
-        "isMigrated": true
-    },
-    {
-        "tenants": {
-            "gmail": {
-                "memberStatus": "ENABLED",
-                "isAdmin": false
-            }
-        },
-        "authPoolId": "us-west-2_OP0VuLD3B",
-        "authClientId": "7eq110jtide58ki5qnl2egatgj",
-        "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
-        "email": "abhi.aec89@gmail.com",
-        "isMigrated": true
-    },
-    {
-        "tenants": {
-            "gmail": {
-                "memberStatus": "ENABLED",
-                "isAdmin": false
-            }
-        },
-        "authPoolId": "us-west-2_OP0VuLD3B",
-        "authClientId": "7eq110jtide58ki5qnl2egatgj",
-        "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
-        "email": "charu89@gmail.com",
-        "isMigrated": true
-    }
-    // {
-    //     "tenants": {
-    //         "gmail": {
-    //             "memberStatus": "ENABLED",
-    //             "isAdmin": false
-    //         }
-    //     },
-    //     "authPoolId": "us-west-2_OP0VuLD3B",
-    //     "authClientId": "7eq110jtide58ki5qnl2egatgj",
-    //     "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
-    //     "email": "abhi.aec89@gmail.com",
-    //     "isMigrated": true
-    // },
-    // {
-    //     "tenants": {
-    //         "gmail": {
-    //             "memberStatus": "ENABLED",
-    //             "isAdmin": true
-    //         }
-    //     },
-    //     "authPoolId": "us-west-2_OP0VuLD3B",
-    //     "authClientId": "7eq110jtide58ki5qnl2egatgj",
-    //     "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
-    //     "email": "yogeeta@gmail.com",
-    //     "isMigrated": true
-    // },
-    // {
-    //     "tenants": {
-    //         "cleo": {
-    //             "memberStatus": "ENABLED",
-    //             "isAdmin": true
-    //         }
-    //     },
-    //     "authPoolId": "us-west-2_OP0VuLD3B",
-    //     "authClientId": "7eq110jtide58ki5qnl2egatgj",
-    //     "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
-    //     "email": "ragarwal@cleo.com",
-    //     "isMigrated": true
-    // }
-];
 
 let tenantId = 'cleo';
 
 let inviteeEmail = 'agupta@cleo.com';
 
-let welcomeOnlyUsers = [];
+processInviteRequests(tenantId, inviteeEmail, emailList);
 
-let inviteOnlyUsers = [];
+function processInviteRequests(tenantId, inviteeEmail, emailList) {
 
+    let unMarshalMemberRecords = [
+        {
+            "tenants": {
+                "cleo": {
+                    "memberStatus": "ENABLED",
+                    "isAdmin": true
+                }
+            },
+            "authPoolId": "us-west-2_OP0VuLD3B",
+            "authClientId": "7eq110jtide58ki5qnl2egatgj",
+            "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
+            "email": "preddy@cleo.com",
+            "isMigrated": true
+        },
+        {
+            "tenants": {
+                "cleo": {
+                    "memberStatus": "ENABLED",
+                    "isAdmin": true
+                }
+            },
+            "authPoolId": "us-west-2_OP0VuLD3B",
+            "authClientId": "7eq110jtide58ki5qnl2egatgj",
+            "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
+            "email": "agupta@cleo.com",
+            "isMigrated": true
+        },
+        {
+            "tenants": {
+                "gmail": {
+                    "memberStatus": "ENABLED",
+                    "isAdmin": false
+                }
+            },
+            "authPoolId": "us-west-2_OP0VuLD3B",
+            "authClientId": "7eq110jtide58ki5qnl2egatgj",
+            "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
+            "email": "abhi.aec89@gmail.com",
+            "isMigrated": true
+        },
+        {
+            "tenants": {
+                "gmail": {
+                    "memberStatus": "ENABLED",
+                    "isAdmin": false
+                }
+            },
+            "authPoolId": "us-west-2_OP0VuLD3B",
+            "authClientId": "7eq110jtide58ki5qnl2egatgj",
+            "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
+            "email": "charu89@gmail.com",
+            "isMigrated": true
+        }
+        // {
+        //     "tenants": {
+        //         "gmail": {
+        //             "memberStatus": "ENABLED",
+        //             "isAdmin": false
+        //         }
+        //     },
+        //     "authPoolId": "us-west-2_OP0VuLD3B",
+        //     "authClientId": "7eq110jtide58ki5qnl2egatgj",
+        //     "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
+        //     "email": "abhi.aec89@gmail.com",
+        //     "isMigrated": true
+        // },
+        // {
+        //     "tenants": {
+        //         "gmail": {
+        //             "memberStatus": "ENABLED",
+        //             "isAdmin": true
+        //         }
+        //     },
+        //     "authPoolId": "us-west-2_OP0VuLD3B",
+        //     "authClientId": "7eq110jtide58ki5qnl2egatgj",
+        //     "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
+        //     "email": "yogeeta@gmail.com",
+        //     "isMigrated": true
+        // },
+        // {
+        //     "tenants": {
+        //         "cleo": {
+        //             "memberStatus": "ENABLED",
+        //             "isAdmin": true
+        //         }
+        //     },
+        //     "authPoolId": "us-west-2_OP0VuLD3B",
+        //     "authClientId": "7eq110jtide58ki5qnl2egatgj",
+        //     "id": "94c8e043-f76f-4076-72da-c6408510fcfd",
+        //     "email": "ragarwal@cleo.com",
+        //     "isMigrated": true
+        // }
+    ];
 
+    let welcomeOnlyUsers = [];
+
+    let inviteOnlyUsers = [];
 
 // check 1 is to clean the invite list for the presence of the inviter's email
 
-console.log(`Person Sending the invite is ${inviteeEmail} belonging to tenant with id ${tenantId}`);
+    console.log(`Person Sending the invite is ${inviteeEmail} belonging to tenant with id ${tenantId}`);
 
-console.log(`Invite List before cleanUp InviteList To Remove The Inviters Email :`);
+    console.log(`Invite List before cleanUp InviteList To Remove The Inviters Email :`);
 
-displayRecords(emailList);
+    displayRecords(emailList);
 
-emailList = cleanUpInviteListToRemoveTheInvitersEmail(emailList, inviteeEmail);
+    emailList = cleanUpInviteListToRemoveTheInvitersEmail(emailList, inviteeEmail);
 
-console.log(`Invite List after cleanUp InviteList To Remove The Inviters Email :`);
+    console.log(`Invite List after cleanUp InviteList To Remove The Inviters Email :`);
 
-displayRecords(emailList);
+    displayRecords(emailList);
 
 // to clean the unMarshalMemberRecords for invite Flow
 
-if (emailList.length > 0) {
+    if (emailList.length > 0) {
 
-    console.log(`Member Records before cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
-
-    displayRecords(unMarshalMemberRecords);
-
-    unMarshalMemberRecords = cleanUpMemberRecordsWhichAreNotPartOfThisInviteFlow(unMarshalMemberRecords, emailList);
-
-    console.log(`Member Records after cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
-
-    displayRecords(unMarshalMemberRecords);
-
-    if (unMarshalMemberRecords.length > 0) {
-
-        console.log(`Member Records before cleanUp Member Records Which Are Part Of Inviters Tenant :`);
+        console.log(`Member Records before cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
 
         displayRecords(unMarshalMemberRecords);
 
-        let tempRecords: any = cleanUpMemberRecordsWhichArePartOfInvitersTenant(unMarshalMemberRecords, tenantId);
+        unMarshalMemberRecords = cleanUpMemberRecordsWhichAreNotPartOfThisInviteFlow(unMarshalMemberRecords, emailList);
 
-        unMarshalMemberRecords = tempRecords.updatedMemberRecords;
-
-        let currentTenantMembers = tempRecords.currentTenantMemberRecords;
-
-        console.log(`Member Records after cleanUp Member Records Which Are Part Of Inviters Tenant :`);
+        console.log(`Member Records after cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
 
         displayRecords(unMarshalMemberRecords);
 
         if (unMarshalMemberRecords.length > 0) {
 
-            console.log(`Invite List before cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
+            console.log(`Member Records before cleanUp Member Records Which Are Part Of Inviters Tenant :`);
 
-            displayRecords(emailList);
+            displayRecords(unMarshalMemberRecords);
 
-            emailList = cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(emailList, currentTenantMembers);
+            let tempRecords: any = cleanUpMemberRecordsWhichArePartOfInvitersTenant(unMarshalMemberRecords, tenantId);
 
-            console.log(`Invite List after cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
+            unMarshalMemberRecords = tempRecords.updatedMemberRecords;
 
-            displayRecords(emailList);
+            let currentTenantMembers = tempRecords.currentTenantMemberRecords;
 
-            if (emailList.length > 0) {
+            console.log(`Member Records after cleanUp Member Records Which Are Part Of Inviters Tenant :`);
 
-                for (let emailCount = 0; emailCount < emailList.length; emailCount++) {
-                    if (isInArray(emailList[emailCount].email, unMarshalMemberRecords)) {
-                        welcomeOnlyUsers.push(emailList[emailCount]);
-                    } else {
-                        inviteOnlyUsers.push(emailList[emailCount]);
+            displayRecords(unMarshalMemberRecords);
+
+            if (unMarshalMemberRecords.length > 0) {
+
+                console.log(`Invite List before cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
+
+                displayRecords(emailList);
+
+                emailList = cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(emailList, currentTenantMembers);
+
+                console.log(`Invite List after cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
+
+                displayRecords(emailList);
+
+                if (emailList.length > 0) {
+
+                    for (let emailCount = 0; emailCount < emailList.length; emailCount++) {
+                        if (isInArray(emailList[emailCount].email, unMarshalMemberRecords)) {
+                            welcomeOnlyUsers.push(emailList[emailCount]);
+                        } else {
+                            inviteOnlyUsers.push(emailList[emailCount]);
+                        }
                     }
-                }
 
+                } else {
+                    console.error('After cleanUp InviteList To Remove Members Which Belongs To Inviter\'s Tenant: No Invite will be send as the invite list is empty!!!!!');
+                }
             } else {
-                console.error('After cleanUp InviteList To Remove Members Which Belongs To Inviter\'s Tenant: No Invite will be send as the invite list is empty!!!!!');
+                console.error('After cleanUp Member Records Which Are Part Of Inviter\'s Tenant: This log indicates that the users who are invited are already part of the inviter\'s tenant');
             }
         } else {
-            console.error('After cleanUp Member Records Which Are Part Of Inviter\'s Tenant: This log indicates that the users who are invited are already part of the inviter\'s tenant');
+            console.error('After cleanUp Member Records Which Are Not Part Of This Invite Flow: this log indicates that the users who are invited are not yet known to the system hence need to be invited');
+            inviteOnlyUsers = emailList;
         }
     } else {
-        console.error('After cleanUp Member Records Which Are Not Part Of This Invite Flow: this log indicates that the users who are invited are not yet known to the system hence need to be invited');
-        inviteOnlyUsers = emailList;
+        console.error('After cleanUp InviteList To Remove The Inviter\'s Email: No Invite will be send as the invite list is empty!!!!!');
     }
-} else {
-    console.error('After cleanUp InviteList To Remove The Inviter\'s Email: No Invite will be send as the invite list is empty!!!!!');
-}
 
-console.log(`Users to be Invited are`);
-displayRecords(inviteOnlyUsers);
-console.log(`Users to be Welcomed are`);
-displayRecords(welcomeOnlyUsers);
+    console.log(`Users to be Invited are`);
+    displayRecords(inviteOnlyUsers);
+    console.log(`Users to be Welcomed are`);
+    displayRecords(welcomeOnlyUsers);
+}
