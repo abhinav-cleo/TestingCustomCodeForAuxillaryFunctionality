@@ -29,27 +29,26 @@ function cleanUpInviteListToRemoveTheInvitersEmail(inviteList, inviteeEmail) {
     return inviteList;
 };
 
-function cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(inviteList, currentTenantMemberEmail) {
-
-    if (inviteList.length === 0 || currentTenantMemberEmail.length === 0) {
+function cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(inviteesEmailToUserPoolMap, membersRecordsForUserBelongingToInvitersTenant) {
+    if (inviteesEmailToUserPoolMap.length === 0 || membersRecordsForUserBelongingToInvitersTenant.length === 0) {
         return null;
     }
 
-    if (currentTenantMemberEmail.length >= inviteList.length) {
-        for (let count = 0; count < currentTenantMemberEmail.length; count++) {
-            for (let ncount = 0; ncount < inviteList.length; ncount++) {
-                if (inviteList[ncount].email === currentTenantMemberEmail[count]) {
-                    delete inviteList[ncount];
+    if (membersRecordsForUserBelongingToInvitersTenant.length >= inviteesEmailToUserPoolMap.length) {
+        for (let count = 0; count < membersRecordsForUserBelongingToInvitersTenant.length; count++) {
+            for (let ncount = 0; ncount < inviteesEmailToUserPoolMap.length; ncount++) {
+                if (inviteesEmailToUserPoolMap[ncount].email === membersRecordsForUserBelongingToInvitersTenant[count]) {
+                    delete inviteesEmailToUserPoolMap[ncount];
                 } else {
                     continue;
                 }
             }
         }
     } else {
-        for (let count = 0; count < inviteList.length; count++) {
-            for (let ncount = 0; ncount < currentTenantMemberEmail.length; ncount++) {
-                if (inviteList[count].email === currentTenantMemberEmail[ncount]) {
-                    delete inviteList[count];
+        for (let count = 0; count < inviteesEmailToUserPoolMap.length; count++) {
+            for (let ncount = 0; ncount < membersRecordsForUserBelongingToInvitersTenant.length; ncount++) {
+                if (inviteesEmailToUserPoolMap[count].email === membersRecordsForUserBelongingToInvitersTenant[ncount]) {
+                    delete inviteesEmailToUserPoolMap[count];
                 } else {
                     continue;
                 }
@@ -57,11 +56,11 @@ function cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(inviteList
         }
     }
 
-    inviteList = inviteList.filter(function (el) {
+    inviteesEmailToUserPoolMap = inviteesEmailToUserPoolMap.filter(function (el) {
         return el !== null;
     });
 
-    return inviteList;
+    return inviteesEmailToUserPoolMap;
 };
 
 function cleanUpMemberRecordsWhichAreNotPartOfThisInviteFlow(memberRecords, inviteeEmailList) {
