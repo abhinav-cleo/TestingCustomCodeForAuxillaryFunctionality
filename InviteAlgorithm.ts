@@ -1,9 +1,10 @@
+import * as log from 'winston'
 function displayRecords(arrayOfObjects) {
-    console.log('Length of the Object Displayed ' + arrayOfObjects.length);
+    log.info('Length of the Object Displayed ' + arrayOfObjects.length);
     arrayOfObjects.forEach(function (record) {
-        console.log(record.email);
+        log.info(record.email);
     });
-    console.log('==============================')
+    log.info('==============================')
 };
 
 function cleanUpInviteListToRemoveTheInvitersEmail(inviteList, inviteeEmail) {
@@ -294,15 +295,15 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
 
 // check 1 is to clean the invite list for the presence of the inviter's email
 
-    console.log(`Person Sending the invite is ${inviteeEmail} belonging to tenant with id ${tenantId}`);
+    log.info(`Person Sending the invite is ${inviteeEmail} belonging to tenant with id ${tenantId}`);
 
-    console.log(`Invite List before cleanUp InviteList To Remove The Inviters Email :`);
+    log.info(`Invite List before cleanUp InviteList To Remove The Inviters Email :`);
 
     displayRecords(emailList);
 
     emailList = cleanUpInviteListToRemoveTheInvitersEmail(emailList, inviteeEmail);
 
-    console.log(`Invite List after cleanUp InviteList To Remove The Inviters Email :`);
+    log.info(`Invite List after cleanUp InviteList To Remove The Inviters Email :`);
 
     displayRecords(emailList);
 
@@ -310,19 +311,19 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
 
     if (emailList.length > 0) {
 
-        console.log(`Member Records before cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
+        log.info(`Member Records before cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
 
         displayRecords(unMarshalMemberRecords);
 
         unMarshalMemberRecords = cleanUpMemberRecordsWhichAreNotPartOfThisInviteFlow(unMarshalMemberRecords, emailList);
 
-        console.log(`Member Records after cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
+        log.info(`Member Records after cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
 
         displayRecords(unMarshalMemberRecords);
 
         if (unMarshalMemberRecords.length > 0) {
 
-            console.log(`Member Records before cleanUp Member Records Which Are Part Of Inviters Tenant :`);
+            log.info(`Member Records before cleanUp Member Records Which Are Part Of Inviters Tenant :`);
 
             displayRecords(unMarshalMemberRecords);
 
@@ -332,19 +333,19 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
 
             let currentTenantMembers = tempRecords.currentTenantMemberRecords;
 
-            console.log(`Member Records after cleanUp Member Records Which Are Part Of Inviters Tenant :`);
+            log.info(`Member Records after cleanUp Member Records Which Are Part Of Inviters Tenant :`);
 
             displayRecords(unMarshalMemberRecords);
 
             if (unMarshalMemberRecords.length > 0) {
 
-                console.log(`Invite List before cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
+                log.info(`Invite List before cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
 
                 displayRecords(emailList);
 
                 emailList = cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(emailList, currentTenantMembers);
 
-                console.log(`Invite List after cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
+                log.info(`Invite List after cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
 
                 displayRecords(emailList);
 
@@ -359,21 +360,21 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
                     }
 
                 } else {
-                    console.error('After cleanUp InviteList To Remove Members Which Belongs To Inviter\'s Tenant: No Invite will be send as the invite list is empty!!!!!');
+                    log.error('After cleanUp InviteList To Remove Members Which Belongs To Inviter\'s Tenant: No Invite will be send as the invite list is empty!!!!!');
                 }
             } else {
-                console.error('After cleanUp Member Records Which Are Part Of Inviter\'s Tenant: This log indicates that the users who are invited are already part of the inviter\'s tenant');
+                log.error('After cleanUp Member Records Which Are Part Of Inviter\'s Tenant: This log indicates that the users who are invited are already part of the inviter\'s tenant');
             }
         } else {
-            console.error('After cleanUp Member Records Which Are Not Part Of This Invite Flow: this log indicates that the users who are invited are not yet known to the system hence need to be invited');
+            log.error('After cleanUp Member Records Which Are Not Part Of This Invite Flow: this log indicates that the users who are invited are not yet known to the system hence need to be invited');
             inviteOnlyUsers = emailList;
         }
     } else {
-        console.error('After cleanUp InviteList To Remove The Inviter\'s Email: No Invite will be send as the invite list is empty!!!!!');
+        log.error('After cleanUp InviteList To Remove The Inviter\'s Email: No Invite will be send as the invite list is empty!!!!!');
     }
 
-    console.log(`Users to be Invited are`);
+    log.info(`Users to be Invited are`);
     displayRecords(inviteOnlyUsers);
-    console.log(`Users to be Welcomed are`);
+    log.info(`Users to be Welcomed are`);
     displayRecords(welcomeOnlyUsers);
 }

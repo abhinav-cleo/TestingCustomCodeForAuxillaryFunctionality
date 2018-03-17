@@ -10,11 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^2.6.2"
-  },
-  "dependencies": {
-    "dynamodb-marshaler": "^2.0.0",
-    "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "@types/winston": "^2.3.8",
+    "typescript": "^2.6.2",
+    "winston": "^2.4.1"
   }
 }
