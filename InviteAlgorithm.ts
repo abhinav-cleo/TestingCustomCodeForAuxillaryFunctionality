@@ -1,9 +1,14 @@
 import * as log from 'winston'
+
 function displayRecords(arrayOfObjects) {
-    log.info('Length of the Object Displayed ' + arrayOfObjects.length);
-    arrayOfObjects.forEach(function (record) {
-        log.info(JSON.stringify(record));
-    });
+    if (arrayOfObjects && arrayOfObjects.length > 0) {
+        log.info('Length of the Object Displayed ' + arrayOfObjects.length);
+        arrayOfObjects.forEach(function (record) {
+            log.info(JSON.stringify(record));
+        });
+    } else {
+        log.info('[]');
+    }
     log.info('==============================')
 };
 
@@ -101,7 +106,7 @@ function cleanUpMemberRecordsWhichArePartOfInvitersTenant(memberRecords, tenantI
         return null;
     }
 
-    let inviterTenantMembers =[];
+    let inviterTenantMembers = [];
     for (let welcomeRecordCount = 0; welcomeRecordCount < memberRecords.length; welcomeRecordCount++) {
         let tenantIds = Object.keys(memberRecords[welcomeRecordCount].tenants);
         if (tenantIds.indexOf(tenantId) !== -1) {
@@ -127,7 +132,7 @@ function cleanUpMemberRecordsWhichArePartOfInvitersTenant(memberRecords, tenantI
 function isInArray(value, array) {
     let isPresent = false;
 
-    if (array.length === 0 ) {
+    if (array.length === 0) {
         return isPresent;
     }
 
@@ -143,26 +148,9 @@ function isInArray(value, array) {
 }
 
 
-
-
 let emailList = [
     {
-        "email": "agupta@cleo.com",
-        "adminStatus": false
-    }
-    ,
-    {
         "email": "preddy@cleo.com",
-        "adminStatus": false
-    }
-    ,
-    {
-        "email": "abhi.aec89@gmail.com",
-        "adminStatus": false
-    }
-    ,
-    {
-        "email": "gkl@cleo.com",
         "adminStatus": false
     }
 ]
@@ -172,33 +160,15 @@ let emailToUserPoolMap = [
         "email": "preddy@cleo.com",
         "domain": "cleo.com",
         "adminStatus": false,
-        "userPoolId": "us-west-2_P5MB6Rt3n",
-        "appClientId": "g46ai8aa16bh0igf36q3simmo",
-        "idOfTenantToWhichUsersAreInvitedTo": "f136a258-08c1-2e13-fe5f-b30987083c66"
-    }
-    ,
-    {
-        "email": "abhi.aec89@gmail.com",
-        "domain": "gmail.com",
-        "adminStatus": false,
-        "userPoolId": "us-west-2_7ZI1CyRvy",
-        "appClientId": "26r2ft47mqbnvcq1ers5s11dlm",
-        "idOfTenantToWhichUsersAreInvitedTo": "f136a258-08c1-2e13-fe5f-b30987083c66"
-    }
-    ,
-    {
-        "email": "gkl@cleo.com",
-        "domain": "cleo.com",
-        "adminStatus": false,
-        "userPoolId": "us-west-2_P5MB6Rt3n",
-        "appClientId": "g46ai8aa16bh0igf36q3simmo",
-        "idOfTenantToWhichUsersAreInvitedTo": "f136a258-08c1-2e13-fe5f-b30987083c66"
+        "userPoolId": "us-west-2_tFLJHchQO",
+        "appClientId": "242q6ock190qesombqan6o9u0u",
+        "idOfTenantToWhichUsersAreInvitedTo": "e1b9bfee-07cb-92c0-7ba5-139fe7c74a15"
     }
 ]
 
-let tenantId = 'f136a258-08c1-2e13-fe5f-b30987083c66';
+let tenantId = 'e1b9bfee-07cb-92c0-7ba5-139fe7c74a15';
 
-let inviteeEmail = 'agupta@cleo.com';
+let inviteeEmail = '77pratap@gmail.com';
 
 processInviteRequests(tenantId, inviteeEmail, emailList);
 
@@ -207,57 +177,99 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
     let unMarshalMemberRecords = [
         {
             "tenants": {
-                "f136a258-08c1-2e13-fe5f-b30987083c66": {
+                "e1b9bfee-07cb-92c0-7ba5-139fe7c74a15": {
                     "memberStatus": "ENABLED",
                     "isAdmin": true
                 }
             },
-            "authPoolId": "us-west-2_P5MB6Rt3n",
-            "authClientId": "g46ai8aa16bh0igf36q3simmo",
-            "id": "724613dc-ea70-920c-440b-209f395d7358",
+            "authPoolId": "us-west-2_PJ4wW4n61",
+            "authClientId": "49bohv3uoa86jk2okcog166o8h",
+            "id": "d0fba56c-b203-f664-ea5e-2749df3daab5",
+            "email": "pratap578.vvs@gmail.com",
+            "isMigrated": true
+        }
+        ,
+        {
+            "tenants": {
+                "d376b35d-1d97-5774-e9f3-d34efe38bff7": {
+                    "memberStatus": "ENABLED",
+                    "isAdmin": true
+                }
+            },
+            "authPoolId": "us-west-2_tFLJHchQO",
+            "authClientId": "242q6ock190qesombqan6o9u0u",
+            "id": "0b66cd64-9976-9e2d-c3a7-96fae4b2820f",
+            "email": "preddy@cleo.com",
+            "isMigrated": true
+        }
+        ,
+        {
+            "tenants": {
+                "d376b35d-1d97-5774-e9f3-d34efe38bff7": {
+                    "memberStatus": "ENABLED",
+                    "isAdmin": false
+                }
+            },
+            "authPoolId": "us-west-2_tFLJHchQO",
+            "authClientId": "242q6ock190qesombqan6o9u0u",
+            "id": "57e86ac7-a858-e75a-063b-52e79c86c101",
             "email": "agupta@cleo.com",
             "isMigrated": true
         }
         ,
         {
             "tenants": {
-                "beff3d0e-595e-ee0e-b37e-95f092d6ba2e": {
+                "d376b35d-1d97-5774-e9f3-d34efe38bff7": {
                     "memberStatus": "ENABLED",
                     "isAdmin": true
                 }
             },
-            "authPoolId": "us-west-2_7ZI1CyRvy",
-            "authClientId": "26r2ft47mqbnvcq1ers5s11dlm",
-            "id": "0ed1d96c-273e-4d2e-1caa-9c58a206698b",
-            "email": "abhi.aec89@gmail.com",
+            "authPoolId": "us-west-2_tFLJHchQO",
+            "authClientId": "242q6ock190qesombqan6o9u0u",
+            "id": "9c80bcfb-7f0e-2dec-72fe-1d7b7965908d",
+            "email": "dgaikwad@cleo.com",
             "isMigrated": true
         }
         ,
         {
             "tenants": {
-                "beff3d0e-595e-ee0e-b37e-95f092d6ba2e": {
+                "e1b9bfee-07cb-92c0-7ba5-139fe7c74a15": {
                     "memberStatus": "ENABLED",
-                    "isAdmin": false
+                    "isAdmin": true
                 }
             },
-            "authPoolId": "us-west-2_7ZI1CyRvy",
-            "authClientId": "26r2ft47mqbnvcq1ers5s11dlm",
-            "id": "82f58dcf-9427-cfea-cd7a-8b9ea4b1a245",
-            "email": "yogeetagup@gmail.com",
+            "authPoolId": "us-west-2_PJ4wW4n61",
+            "authClientId": "49bohv3uoa86jk2okcog166o8h",
+            "id": "74eeba2e-5344-5c4b-1a1e-9dafa23999ee",
+            "email": "77pratap@gmail.com",
             "isMigrated": true
         }
         ,
         {
             "tenants": {
-                "f136a258-08c1-2e13-fe5f-b30987083c66": {
+                "e1b9bfee-07cb-92c0-7ba5-139fe7c74a15": {
+                    "memberStatus": "ENABLED",
+                    "isAdmin": true
+                }
+            },
+            "authPoolId": "us-west-2_PJ4wW4n61",
+            "authClientId": "49bohv3uoa86jk2okcog166o8h",
+            "id": "e673029d-13a8-5da5-ea3e-18c948bfeb31",
+            "email": "vvs.pratap@gmail.com",
+            "isMigrated": true
+        }
+        ,
+        {
+            "tenants": {
+                "e1b9bfee-07cb-92c0-7ba5-139fe7c74a15": {
                     "memberStatus": "ENABLED",
                     "isAdmin": false
                 }
             },
-            "authPoolId": "us-west-2_P5MB6Rt3n",
-            "authClientId": "g46ai8aa16bh0igf36q3simmo",
-            "id": "57584c80-f968-cf47-b781-aec4edacfa42",
-            "email": "preddy@cleo.com",
+            "authPoolId": "us-west-2_PJ4wW4n61",
+            "authClientId": "49bohv3uoa86jk2okcog166o8h",
+            "id": "bccc1e63-2c21-2581-3d19-ef0b9a692e70",
+            "email": "pratap999@gmail.com",
             "isMigrated": true
         }
     ]
@@ -282,7 +294,7 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
 
 // to clean the unMarshalMemberRecords for invite Flow
 
-    if (emailList.length > 0) {
+    if (emailList && emailList.length > 0) {
 
         log.info(`Member Records before cleanUp Member Records Which Are Not Part Of This InviteFlow :`);
 
@@ -294,7 +306,7 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
 
         displayRecords(unMarshalMemberRecords);
 
-        if (unMarshalMemberRecords.length > 0) {
+        if (unMarshalMemberRecords && unMarshalMemberRecords.length > 0) {
 
             log.info(`Member Records before cleanUp Member Records Which Are Part Of Inviters Tenant :`);
 
@@ -310,19 +322,21 @@ function processInviteRequests(tenantId, inviteeEmail, emailList) {
 
             displayRecords(unMarshalMemberRecords);
 
-            if (unMarshalMemberRecords.length > 0) {
+            if (unMarshalMemberRecords && unMarshalMemberRecords.length > 0) {
 
                 log.info(`emailToUserPoolMap before cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
 
                 displayRecords(emailToUserPoolMap);
 
-                emailToUserPoolMap = cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(emailToUserPoolMap, currentTenantMembers);
+                if (currentTenantMembers && currentTenantMembers.length > 0) {
+                    emailToUserPoolMap = cleanUpInviteListToRemoveMembersWhichBelongsToInvitersTenant(emailToUserPoolMap, currentTenantMembers);
+                }
 
                 log.info(`emailToUserPoolMap after cleanUp InviteList To Remove Members Which Belongs To Inviters Tenant :`);
 
                 displayRecords(emailToUserPoolMap);
 
-                if (emailToUserPoolMap.length > 0) {
+                if (emailToUserPoolMap && emailToUserPoolMap.length > 0) {
 
                     for (let emailCount = 0; emailCount < emailToUserPoolMap.length; emailCount++) {
                         if (isInArray(emailToUserPoolMap[emailCount].email, unMarshalMemberRecords)) {
