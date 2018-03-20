@@ -4,8 +4,8 @@
   "description": "typescript training",
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/tsc InviteAlgorithm.ts --watch",
-    "run": "node InviteAlgorithm.js"
+    "build": "node_modules/.bin/tsc customMarshalling.ts --watch",
+    "run": "node customMarshalling.js"
   },
   "author": "",
   "license": "ISC",
