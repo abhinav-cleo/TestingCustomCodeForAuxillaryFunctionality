@@ -4,8 +4,8 @@
   "description": "typescript training",
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/tsc customMarshalling.ts --watch",
-    "run": "node customMarshalling.js"
+    "build": "node_modules/.bin/tsc registrationValidation.ts --watch",
+    "run": "node registrationValidation.js"
   },
   "author": "",
   "license": "ISC",
