@@ -4,13 +4,17 @@
   "description": "typescript training",
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/tsc addTenantTypeInLoginResponse.ts --watch",
-    "run": "node addTenantTypeInLoginResponse.js"
+    "build": "node_modules/.bin/tsc handleNestedPromises.ts --watch",
+    "run": "node handleNestedPromises.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/request": "^2.47.0",
+    "@types/request-promise": "^4.1.41",
     "@types/winston": "^2.3.8",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
     "typescript": "^2.6.2",
     "winston": "^2.4.1"
   }
